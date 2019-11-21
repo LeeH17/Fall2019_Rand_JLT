@@ -60,7 +60,7 @@ prod_init = get_inner_product(scipy.eye(m)*X)
 
 test_dimensions = np.linspace(30, 690, 22).astype(int)
 prods = np.zeros(n * (n - 1) // 2 * len(test_dimensions)).reshape((len(test_dimensions), n * (n - 1) // 2))
-for i, k in enumerate(test_dimensions):
+for i, k in enumerate(test_dimensions): #Test with final dimensions 0 to 600
 	# Define the random matrix R
 	R = generate_R(k, m)
 	print("The random matrix size is:", R.shape)
