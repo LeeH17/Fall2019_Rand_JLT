@@ -27,19 +27,20 @@ def generate_R(k, d):
 def get_inner_product(X):
 	[row, col] = X.shape
 	prod = np.zeros(col * (col - 1) // 2)
+	index = 0
 	for i in range(col):
 		for j in range(col):
 			if j < i:
-				prod[i + j] += np.inner(X[:,i], X[:,j])
+				prod[index] = np.inner(X[:,i], X[:,j])
+				index += 1
 	return prod
 
 # Define the original dimension
-n = int(2257)
+n = int()
 m = int(5000)
 
 categories = ['alt.atheism', 'soc.religion.christian', 'comp.graphics', 'sci.med']
 # categories = ['sci.med']
-# n = int(594)
 
 textdata = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
 
@@ -57,6 +58,7 @@ X = X.asfptype()
 X = X.transpose()
 print("The text data fequency matrix size is:", X.shape)
 prod_init = get_inner_product(scipy.eye(m)*X)
+[dummy, n] = X.shape
 
 test_dimensions = np.linspace(30, 690, 22).astype(int)
 prods = np.zeros(n * (n - 1) // 2 * len(test_dimensions)).reshape((len(test_dimensions), n * (n - 1) // 2))
@@ -77,7 +79,9 @@ for i in range(len(test_dimensions)):
 	avg_err[i] = np.average(err)
 
 # Plot the results
-plt.plot(test_dimensions, avg_err, marker="*")
+plt.rcParams.update({'font.size':26})
+plt.figure(figsize=(18,12))
+plt.plot(test_dimensions, avg_err, marker="*", markersize=20)
 plt.xlabel("Target dimension")
 plt.ylabel("Average Error")
 plt.show()
