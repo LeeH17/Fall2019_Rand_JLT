@@ -78,10 +78,24 @@ for i in range(len(test_dimensions)):
 	err = prods[i] - prod_init
 	avg_err[i] = np.average(err)
 
+# Expected eps for each dimension
+eps = np.sqrt(np.divide(np.log10(n), test_dimensions.astype(float)))
+
+upper_bound = np.zeros(len(test_dimensions))
+lower_bound = np.zeros(len(test_dimensions))
+for i, e in enumerate(eps):
+	tmp_upper = prod_init * e
+	tmp_lower = prod_init * (-e)
+	upper_bound[i] = np.average(tmp_upper)
+	lower_bound[i] = np.average(tmp_lower)
+
 # Plot the results
 plt.rcParams.update({'font.size':26})
 plt.figure(figsize=(18,12))
-plt.plot(test_dimensions, avg_err, marker="*", markersize=20)
+plt.plot(test_dimensions, avg_err, label="Error", marker="*", markersize=20)
+plt.plot(test_dimensions, upper_bound, label="Expected upper bound")
+plt.plot(test_dimensions, lower_bound, label="Expected lower bound")
 plt.xlabel("Target dimension")
 plt.ylabel("Average Error")
+plt.legend()
 plt.show()
