@@ -52,7 +52,7 @@ tf_transformer = TfidfTransformer(use_idf=False).fit(word_counts)
 X = tf_transformer.transform(word_counts)
 # Clip the dataset
 X = X[:,:m]
-# truncate the dataset
+# normalize and transpose the dataset
 X = normalize(X, 'l2')
 X = X.asfptype()
 X = X.transpose()
@@ -75,27 +75,30 @@ for i, k in enumerate(test_dimensions): #Test with final dimensions 0 to 600
 
 avg_err = np.zeros(len(test_dimensions))
 for i in range(len(test_dimensions)):
-	err = prods[i] - prod_init
+	err = np.absolute(prods[i] - prod_init)
 	avg_err[i] = np.average(err)
 
 # Expected eps for each dimension
-eps = np.sqrt(np.divide(np.log10(n), test_dimensions.astype(float)))
+eps = np.sqrt(np.divide(np.log10(n), test_dimensions.astype(float) / 8))
+int_eps = np.sqrt(np.divide(np.log10(n), test_dimensions.astype(float)))
 
 upper_bound = np.zeros(len(test_dimensions))
-lower_bound = np.zeros(len(test_dimensions))
+interpolated = np.zeros(len(test_dimensions))
 for i, e in enumerate(eps):
 	tmp_upper = prod_init * e
-	tmp_lower = prod_init * (-e)
+	tmp_interp = prod_init * int_eps[i]
 	upper_bound[i] = np.average(tmp_upper)
-	lower_bound[i] = np.average(tmp_lower)
+	interpolated[i] = np.average(tmp_interp)
 
 # Plot the results
 plt.rcParams.update({'font.size':26})
 plt.figure(figsize=(18,12))
-plt.plot(test_dimensions, avg_err, label="Error", marker="*", markersize=20)
-plt.plot(test_dimensions, upper_bound, label="Expected upper bound")
-plt.plot(test_dimensions, lower_bound, label="Expected lower bound")
+plt.plot(test_dimensions, avg_err, label="Practical error", marker="*", markersize=20)
+# Compute the confidence interval
+plt.plot(test_dimensions, upper_bound, label="Upper bound $\sqrt{8(\log n)/k}$\n with confidence $1-2e^{-n\epsilon^2/8}$")
+# plt.plot(test_dimensions, interpolated, label="$\sqrt{4(\log n)/k}$")
+plt.plot(test_dimensions, interpolated, label="$\sqrt{(\log n)/k}$")
 plt.xlabel("Target dimension")
 plt.ylabel("Average Error")
-plt.legend()
+plt.legend(frameon=False)
 plt.show()
