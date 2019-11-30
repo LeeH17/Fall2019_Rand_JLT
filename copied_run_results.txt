@@ -1,0 +1,52 @@
+Final dimensions of given data is: (2257, 5000) n rows by d columns
+For 0.1 minimum accurate dimensions = 773
+Given (eps, k):
+-- 0.05 , 3088
+-- 0.10 , 772
+-- 0.15 , 343
+-- 0.20 , 193
+-- 0.25 , 123
+-- 0.30 , 85
+-- 0.35 , 63
+-- 0.40 , 48
+-- 0.45 , 38
+-- 0.50 , 30
+-- 0.55 , 25
+-- 0.65 , 18
+-- 0.75 , 13
+-- 0.85 , 10
+-- 0.95 , 8
+Showing Graph . . .
+
+Testing dimensions from 386 to 2500
+[ 386  497  608  720  831  942 1053 1165 1276 1387 1498 1610 1721 1832
+ 1943 2055 2166 2277 2388 2500]
+-Running test 0 with dimensions 386 . . . (distances in 12.370s) . Done! 888.537s
+-Running test 1 with dimensions 497 . . . (distances in 19.364s) . Done! 962.140s
+-Running test 2 with dimensions 608 . . . (distances in 24.815s) . Done! 995.205s
+-Running test 3 with dimensions 720 . . . (distances in 32.962s) . Done! 1015.609s
+-Running test 4 with dimensions 831 . . . (distances in 30.940s) . Done! 1011.074s
+-Running test 5 with dimensions 942 . . . (distances in 43.001s) . Done! 1008.101s
+-Running test 6 with dimensions 1053 . . . (distances in 45.332s) . Done! 955.074s
+-Running test 7 with dimensions 1165 . . . (distances in 48.589s) . Done! 1037.073s
+-Running test 8 with dimensions 1276 . . . (distances in 53.984s) . Done! 905.235s
+-Running test 9 with dimensions 1387 . . . (distances in 47.798s) . Done! 840.240s
+-Running test 10 with dimensions 1498 . . . (distances in 52.123s) . Done! 838.809s
+-Running test 11 with dimensions 1610 . . . (distances in 54.925s) . Done! 838.599s
+-Running test 12 with dimensions 1721 . . . (distances in 59.569s) . Done! 829.992s
+-Running test 13 with dimensions 1832 . . . (distances in 62.741s) . Done! 816.564s
+-Running test 14 with dimensions 1943 . . . (distances in 67.322s) . Done! 806.639s
+-Running test 15 with dimensions 2055 . . . (distances in 70.216s) . Done! 795.615s
+-Running test 16 with dimensions 2166 . . . (distances in 71.250s) . Done! 797.515s
+-Running test 17 with dimensions 2277 . . . (distances in 75.197s) . Done! 800.177s
+-Running test 18 with dimensions 2388 . . . (distances in 79.916s) . Done! 809.073s
+-Running test 19 with dimensions 2500 . . . (distances in 89.881s) . Done! 807.377s
+Tests finished!
+
+0.00509, -0.00955, -0.01985, 0.00462, -0.00872, -0.00175, -0.00675, 0.00830, -0.00268, 0.00144, -0.00164, -0.00442, -0.00092, -0.00885, -0.00979, -0.01083, -0.01008, -0.00446, 0.00575, 0.00228,  = average distance errors found in runs.
+
+ All tests done! Displaying plot for distance errors.
+
+1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000, 1.00000,  = average distance errors found in runs.
+
+ All tests done! Displaying plot for neighbors errors.
