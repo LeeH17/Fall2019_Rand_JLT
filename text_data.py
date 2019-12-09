@@ -67,7 +67,7 @@ for i, k in enumerate(test_dimensions): #Test with final dimensions 0 to 600
 	R = generate_R(k, m)
 	print("The random matrix size is:", R.shape)
 	# Multipy the random matrix with A
-	X_hat = R*X
+	X_hat = R*X*np.sqrt(float(m)/float(k))
 	X_hat = normalize(X_hat.transpose(), 'l2').transpose()
 	print("The projected matrix size is:", X_hat.shape)
 	# Compute inner product
@@ -91,13 +91,13 @@ for i, e in enumerate(eps):
 	interpolated[i] = np.average(tmp_interp)
 
 # Plot the results
-plt.rcParams.update({'font.size':26})
+plt.rcParams.update({'font.size':36})
 plt.figure(figsize=(18,12))
 plt.plot(test_dimensions, avg_err, label="Practical error", marker="*", markersize=20)
 # Compute the confidence interval
-plt.plot(test_dimensions, upper_bound, label="Upper bound $\sqrt{8(\log n)/k}$\n with confidence $1-2e^{-n\epsilon^2/8}$")
+plt.plot(test_dimensions, upper_bound, linewidth=2, label="Upper bound $\sqrt{8(\log n)/k}$\n confidence 93.0%")
 # plt.plot(test_dimensions, interpolated, label="$\sqrt{4(\log n)/k}$")
-plt.plot(test_dimensions, interpolated, label="$\sqrt{(\log n)/k}$")
+plt.plot(test_dimensions, interpolated, linewidth=2, label="$\sqrt{(\log n)/k}$")
 plt.xlabel("Target dimension")
 plt.ylabel("Average Error")
 plt.legend(frameon=False)
